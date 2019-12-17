@@ -70,7 +70,7 @@ To run following examples download the `bus0112.ods` and `bus0113.ods` [bus pass
 Dump the `BUS0112` tab from the `bus0112.ods` file in a `.tsv` format in the `output` directory:
 
 ```
-  $ ./ods2tsv.py connectivity-statistics-destination-lists.xls 
+  $ ./ods2tsv.py bus0112.ods
   $ ls output
 BUS0112.tsv
 ```
@@ -92,9 +92,9 @@ Dump the `BUS0112` tab data into the `bus` directory:
 BUS0112.tsv
 ```
 
-### All tabs from multiple-files into multiple `.tsv` files and append filename
+### All tabs from multiple-files into multiple `.tsv` files and pre-pend filename
 
-Dump all the tab data from the `bus0112.ods` and `bus0113.ods` files into the `output` directory with filenames `<tab>.tsv`:
+Dump all the tab data from the `bus0112.ods` and `bus0113.ods` files into the `output` directory with filenames `<filename>:<tab>.tsv`:
 
 ```
   $ ./ods2tsv.py --sourcename bus0112.ods bus0113.ods
@@ -115,7 +115,7 @@ BUS0112.csv
 
 ### `XLS` and `XLSX` file usage examples
 
-To run following examples download DfT connectivity statistics [connectivity-statistics-destination-lists.xls](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/435905/connectivity-statistics-destination-lists.xls) and the `US gun crime.xlsx` statistic files.
+To run following examples download DfT connectivity statistics [connectivity-statistics-destination-lists.xls](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/435905/connectivity-statistics-destination-lists.xls) and the historic US gun crime (`US gun crime.xlsx`) statistic file.
 
 ### Basic usage
 Dump the `Airports`, `Junctions`, `RailStations` and `VariableDefinitions` tab data from the `connectivity-statistics-destination-lists.xls` into `.tsv` files in the `output` directory:
@@ -143,12 +143,12 @@ Dump the `Junctions` tab data into the `connectivity` directory:
 Junctions.tsv
 ```
 
-### All tabs from multiple-files into multiple `.tsv` files named source-filename
+### All tabs from multiple-files into multiple `.tsv` files
 
 Dump all the tab data from the `connectivity-statistics.xls` and `US gun crime.xlsx` files into the `output` directory with filenames `<filename>:<tab>.tsv`:
 
 ```
-  $ ./xl2tsv.py --filename connectivity-statistics.xls 'US gun crime.xlsx' 
+  $ ./xl2tsv.py --sourcefile connectivity-statistics.xls 'US gun crime.xlsx' 
   $ ls output
  connectivity-statistics:Airports.tsv
  connectivity-statistics:Junctions.tsv

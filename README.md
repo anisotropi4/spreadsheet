@@ -1,4 +1,4 @@
-# Dump spreadsheet content `ods2tsv.py`
+# Dump `ODS` spreadsheet content `ods2tsv.py`
 
 The `ods2tsv.py` script dumps the content of `ods` files to a `[tabname].tsv` diles in the (default) `output` directory. Command line parameters:
 

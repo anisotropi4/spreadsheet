@@ -1,6 +1,8 @@
-# Dump `ODS` spreadsheet content `ods2tsv.py`
+# Dump `ODS` spreadsheet content with `ods2tsv.py` and , `XLS` and `XLSX` with `xl2tsv.py`
 
-The `ods2tsv.py` script dumps the content of `ods` files to a `[tabname].tsv` diles in the (default) `output` directory. Command line parameters:
+The `ods2tsv.py` script dumps the content of `ods` files to a `[tabname].tsv` diles in the (default) `output` directory. The `xl2tsv.py` script dumps the tab content of `xls` and `xlsx` files to a `[tabname].tsv` in the (default) `output` directory. 
+
+Command line parameters:
 
 +   ```--tabnames``` to dump the names of the tabs in the file(s) and stop  
 +   ```--path``` (optional) set the output directory path (default) output  
@@ -13,6 +15,8 @@ If not present in the current directory, the `ods2tsv.py` script creates the (de
 ## Dependencies
 
 The `ods2tsv.py` is a simple wrapper script based on the python3 and the [xlrd](https://pypi.org/project/xlrd), [odfpy](https://https://github.com/eea/odfpy) and [pandas](https://pandas.pydata.org) libraries.
+
+The `xl2tsv.py` is a simple wrapper script based on the python3 and the [xlrd](https://pypi.org/project/xlrd) and [pandas](https://pandas.pydata.org) libraries.
 
 ## Set up a virtual python environment
 
@@ -58,7 +62,7 @@ The `virtual environment` is deactivated as follows:
     (venv)$ deactivate 
 ```
 
-## Usage Examples
+## `ODS` file-format usage examples
 
 To run following examples download the `bus0112.ods` and `bus0113.ods` [bus passenger journey statistics](https://www.gov.uk/government/statistical-data-sets/bus01-local-bus-passenger-journeys) files.
 
@@ -107,4 +111,61 @@ Dump the `BUS0112` tab data from the `bus0112.ods` file into the `output` direct
   $ ./ods2tsv.py --csv --tab BUS0112 bus0112.ods
   $ ls output
 BUS0112.csv
+```
+
+### `XLS` and `XLSX` file usage examples
+
+To run following examples download DfT connectivity statistics [connectivity-statistics-destination-lists.xls](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/435905/connectivity-statistics-destination-lists.xls) and the `US gun crime.xlsx` statistic files.
+
+### Basic usage
+Dump the `Airports`, `Junctions`, `RailStations` and `VariableDefinitions` tab data from the `connectivity-statistics-destination-lists.xls` into `.tsv` files in the `output` directory:
+
+```
+  $ ./xl2tsv.py connectivity-statistics-destination-lists.xls 
+  $ ls output
+Airports.tsv  Junctions.tsv  RailStations.tsv  VariableDefinitions.tsv
+```
+
+### All tabs in a file
+Dump the names of the tabs from the `connectivity-statistics-destination-lists.xls` file:
+
+```
+$ ./xl2tsv.py --tabnames connectivity-statistics-destination-lists.xls 
+VariableDefinitions	Airports	RailStations	Junctions
+```
+
+### One tab into a given directory
+Dump the `Junctions` tab data into the `connectivity` directory:
+
+```
+  $ ./xl2tsv.py --tab Junctions --path connectivity  connectivity-statistics-destination-lists.xls 
+  $ ls connectivity
+Junctions.tsv
+```
+
+### All tabs from multiple-files into multiple `.tsv` files named source-filename
+
+Dump all the tab data from the `connectivity-statistics.xls` and `US gun crime.xlsx` files into the `output` directory with filenames `<filename>:<tab>.tsv`:
+
+```
+  $ ./xl2tsv.py --filename connectivity-statistics.xls 'US gun crime.xlsx' 
+  $ ls output
+ connectivity-statistics:Airports.tsv
+ connectivity-statistics:Junctions.tsv
+ connectivity-statistics:RailStations.tsv
+ connectivity-statistics:VariableDefinitions.tsv
+'US gun crime:2010 SUMMARY.tsv'
+'US gun crime:2011 MURDER.tsv'
+'US gun crime:ASSAULT 2009.tsv'
+'US gun crime:ASSAULT 2010.tsv'
+'US gun crime:ASSAULT 2011.tsv'
+'US gun crime:CHART TRENDS.tsv'
+'US gun crime:MURDER 2009.tsv'
+'US gun crime:MURDER 2010.tsv'
+'US gun crime:MURDER TRENDS.tsv'
+'US gun crime:POPULATION DATA.tsv'
+'US gun crime:ROBBERY 2009.tsv'
+'US gun crime:ROBBERY 2010.tsv'
+'US gun crime:ROBBERY 2011.tsv'
+'US gun crime:SUMMARY 2011.tsv'
 ```

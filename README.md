@@ -1,6 +1,6 @@
-# Dump `ODS` spreadsheet content with `ods2tsv.py` and , `XLS` and `XLSX` with `xl2tsv.py`
+# Dump `ODS` spreadsheet content with `ods2tsv.py` and, `XLS` and `XLSX` with `xl2tsv.py`
 
-The `ods2tsv.py` script dumps the content of `ods` files to a `[tabname].tsv` diles in the (default) `output` directory. The `xl2tsv.py` script dumps the tab content of `xls` and `xlsx` files to a `[tabname].tsv` in the (default) `output` directory. 
+The `ods2tsv.py` script dumps the content of `ods` files to a `[tabname].tsv` diles in the (default) `output` directory. The `xl2tsv.py` script dumps the content of `xls` and `xlsx` files to a `[tabname].tsv` in the (default) `output` directory. 
 
 Command line parameters:
 
